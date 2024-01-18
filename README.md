@@ -107,9 +107,9 @@ systemctl enable iscsid
 systemctl start iscsid
 ```
 
-Then create the Storage Class in your cluster:  
+Then deploy longhorn in your cluster:  
 ```
-kubectl create -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/examples/storageclass.yaml
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.1/deploy/longhorn.yaml
 ```
 
 Note: Check `storageClassName: longhorn` is set in `diracx-charts/diracx/templates/cs-store-volume.yml`
