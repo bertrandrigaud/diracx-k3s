@@ -148,9 +148,20 @@ kubectl proxy
 ```
 
 In a web browser, go to : http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/  
-Use token create just above for login  
+Note: use token created just above for login  
   
 Choose `Token` as login method, paste the token just generated  
+
+## Get Traefik Dashboard
+
+Traefik comes out of the box with k3s. In order to access Traefik Dashboard from your laptop:   
+
+```
+kubectl --namespace kube-system port-forward deployments/traefik 9000:9000 &
+```
+
+In a web browser, go to : http://localhost:9000/dashboard/  
+
 
 
 
@@ -168,13 +179,4 @@ Deploy via provided helm charts
 ```
 helm install --kubeconfig ./kubeconfig diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.test.yaml
 ```
-
-## Get Traefik Dashboard
-
-```
-# Launch web server
-kubectl --namespace kube-system port-forward deployments/traefik 9000:9000 &
-```
-
-In a web browser, go to : http://localhost:9000/dashboard/  
 
