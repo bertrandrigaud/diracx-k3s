@@ -5,15 +5,17 @@ Deploy diracx on a k3s cluster remotely
 
 ## Resources
 
-kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
-
-helm: https://helm.sh/docs/intro/install/
-
-k3sup: https://github.com/alexellis/k3sup
-k3s: https://docs.k3s.io/
-
-diracx: https://github.com/DIRACGrid/diracx
-diracx-charts: https://github.com/DIRACGrid/diracx-charts
+kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/  
+  
+helm: https://helm.sh/docs/intro/install/  
+  
+k3sup: https://github.com/alexellis/k3sup  
+k3s: https://docs.k3s.io/  
+  
+loghorn: https://longhorn.io/  
+  
+diracx: https://github.com/DIRACGrid/diracx  
+diracx-charts: https://github.com/DIRACGrid/diracx-charts  
 
 
 ## Requirements
