@@ -172,15 +172,10 @@ git clone https://github.com/DIRACGrid/diracx.git
 git clone https://github.com/DIRACGrid/diracx-charts.git
 ```
 
-Create a diracx namespace
--------------------------
-```
-kubectl create namespace diracx
-```
 
 Deploy via provided helm charts
 -------------------------------
 ```
-helm install --kubeconfig ./kubeconfig diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.test.yaml --debug --namespace diracx
+helm install --kubeconfig ./kubeconfig diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.test.yaml --debug
 ```
 
