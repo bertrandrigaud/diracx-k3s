@@ -93,27 +93,6 @@ export AGENT_IP=xxx.xxx.xxx.xxx
 k3sup join --ip $AGENT_IP --server-ip $SERVER_IP --user $USER
 ```
 
-Storage configuration (Longhorn)
---------------------------------
-
-open-iscsi is required. Depending on your cluster OS, follow this install procedure:
-https://longhorn.io/docs/1.5.3/deploy/install/#installing-open-iscsi  
-
-example for RHEL, Centos:
-```
-yum --setopt=tsflags=noscripts install iscsi-initiator-utils
-echo "InitiatorName=$(/sbin/iscsi-iname)" > /etc/iscsi/initiatorname.iscsi
-systemctl enable iscsid
-systemctl start iscsid
-```
-
-Then deploy longhorn in your cluster:  
-```
-kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.1/deploy/longhorn.yaml
-```
-
-Note: Check `storageClassName: longhorn` is set in `diracx-charts/diracx/templates/cs-store-volume.yml`
-
 
 Test your cluster
 -----------------
@@ -162,6 +141,38 @@ kubectl --namespace kube-system port-forward deployments/traefik 9000:9000 &
 
 In a web browser, go to : http://localhost:9000/dashboard/  
 
+Storage configuration (Longhorn)
+--------------------------------
+
+Deploy longhorn in your cluster:  
+```
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/deploy/prerequisite/longhorn-iscsi-installation.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/deploy/prerequisite/longhorn-nfs-installation.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/deploy/longhorn.yaml
+```
+
+Check environnment
+------------------
+```
+curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/scripts/environment_check.sh | bash
+
+```
+
+Note: Check `storageClassName: longhorn` is set in `diracx-charts/diracx/templates/cs-store-volume.yml`
+
+On master Node:
+```
+cp /var/lib/rancher/k3s/server/manifests/local-storage.yaml /var/lib/rancher/k3s/server/manifests/custom-local-storage.yaml 
+
+sed -i -e "s/storageclass.kubernetes.io\/is-default-class: \"true\"/storageclass.kubernetes.io\/is-default-class: \"false\"/g" /var/lib/rancher/k3s/server/manifests/custom-local-storage.yaml
+```
+
+
+```
+kubectl port-forward -n longhorn-system svc/longhorn-frontend 8080:80
+```
 
 ## Deploy diracx
 
@@ -176,6 +187,6 @@ git clone https://github.com/DIRACGrid/diracx-charts.git
 Deploy via provided helm charts
 -------------------------------
 ```
-helm install --kubeconfig ./kubeconfig diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.test.yaml --debug
+helm install diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.test.yaml --debug
 ```
 
