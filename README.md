@@ -25,6 +25,8 @@ diracx-charts: https://github.com/DIRACGrid/diracx-charts
 - kubectl (client for managing kubernetes cluster)
 
 - helm (tool for managing kubernetes deployments via charts)
+  
+- Clone this repo on your laptop
 
 Install kubectl (on laptop)
 ---------------------------
@@ -187,6 +189,7 @@ git clone https://github.com/DIRACGrid/diracx-charts.git
 Deploy via provided helm charts
 -------------------------------
 ```
-helm install diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.test.yaml --debug
+helm install diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.yaml --debug
 ```
+Note: modification in ./diracx-charts/demo/values.tpl.yaml is required to fit with your cluster and dirac application configuration
 
