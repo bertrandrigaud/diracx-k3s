@@ -196,9 +196,9 @@ git clone https://github.com/DIRACGrid/diracx-charts.git
 Deploy via provided helm charts
 -------------------------------
 ```
-helm install diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.yaml --debug
+helm install --timeout 3600s diracx ./diracx-charts/diracx/ -f ./diracx-k3s/examples/my.values.yaml --debug
 ```
-Note: modification in ./diracx-charts/demo/values.tpl.yaml is required to fit with your cluster and dirac application configuration
+Note: edit ./diracx-k3s/examples/my.values.yaml to fit with your cluster configuration (k3s server hostname) 
 
 ## Uninstall k3s on main server
 https://docs.k3s.io/installation/uninstall  
