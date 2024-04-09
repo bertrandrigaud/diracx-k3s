@@ -34,6 +34,8 @@ diracx-charts: https://github.com/DIRACGrid/diracx-charts
     - 8080 (longhorn dashboard)
     - 9000 (traefik dashboard)
 
+Check that you follow the recommendations https://docs.k3s.io/installation/requirements
+
 Install kubectl (on laptop)
 ---------------------------
 
@@ -91,7 +93,7 @@ Assuming your cluster is composed of 2 machines (main server and agent server)
 export SERVER_IP=xxx.xxx.xxx.xxx
 export USER=root
 
-k3sup install --ip $SERVER_IP --user $USER
+k3sup install --ip $SERVER_IP --user $USER --k3s-extra-args '--flannel-backend=wireguard-native'
 
 
 # join agent server
@@ -119,9 +121,9 @@ kubectl get pods -A
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 
-kubectl apply -f ./manifest/dashboard/cluster-role.yaml
-kubectl apply -f ./manifest/dashboard/secret.yaml 
-kubectl apply -f ./manifest/dashboard/service-account.yaml
+kubectl apply -f ./manifest/cluster-role.yaml
+kubectl apply -f ./manifest/secret.yaml 
+kubectl apply -f ./manifest/service-account.yaml
 ```
 
 ```
@@ -212,3 +214,21 @@ On agent nodes
 /usr/local/bin/k3s-agent-uninstall.sh
 ```
 
+
+## Troubleshoot
+
+### `Nameserver limits were exceeded`
+
+This is due to `glibc` limitation on the number of entry in `/etc/resolv.conf`. Do not have more than 3.
+
+
+### 
+
+`longhorn-ui` fails with
+
+```
+host not found in upstream "longhorn-backend" in /etc/nginx/nginx.conf:32
+nginx: [emerg] host not found in upstream "longhorn-backend" in /etc/nginx/nginx.conf:32
+```
+
+I used ``wireguard`` instead of ``flannel``
