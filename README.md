@@ -189,7 +189,6 @@ kubectl port-forward -n longhorn-system svc/longhorn-frontend 8080:80 &
 Clone diracx repositories
 -------------------------
 ```
-git clone https://github.com/DIRACGrid/diracx.git
 git clone https://github.com/DIRACGrid/diracx-charts.git
 ```
 
