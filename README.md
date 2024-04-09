@@ -201,7 +201,7 @@ helm install diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.y
 ```
 Note: modification in ./diracx-charts/demo/values.tpl.yaml is required to fit with your cluster and dirac application configuration
 
-# Uninstall k3s on main server
+## Uninstall k3s on main server
 https://docs.k3s.io/installation/uninstall  
 
 On master node:
