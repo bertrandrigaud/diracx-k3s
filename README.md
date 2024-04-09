@@ -33,7 +33,7 @@ Install kubectl (on laptop)
 
 ```
 # kubectl
-curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl
+curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
 
 # kubectl checksum file
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
@@ -192,4 +192,17 @@ Deploy via provided helm charts
 helm install diracx ./diracx-charts/diracx/ -f ./diracx-charts/demo/values.tpl.yaml --debug
 ```
 Note: modification in ./diracx-charts/demo/values.tpl.yaml is required to fit with your cluster and dirac application configuration
+
+# Uninstall k3s on main server
+https://docs.k3s.io/installation/uninstall  
+
+On master node:
+```
+/usr/local/bin/k3s-uninstall.sh
+```
+
+On agent nodes
+```
+/usr/local/bin/k3s-agent-uninstall.sh
+```
 
