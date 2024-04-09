@@ -121,9 +121,9 @@ kubectl get pods -A
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 
-kubectl apply -f ./manifest/cluster-role.yaml
-kubectl apply -f ./manifest/secret.yaml 
-kubectl apply -f ./manifest/service-account.yaml
+kubectl apply -f ./manifest/dashboard/cluster-role.yaml
+kubectl apply -f ./manifest/dashboard/secret.yaml 
+kubectl apply -f ./manifest/dashboard/service-account.yaml
 ```
 
 ```
