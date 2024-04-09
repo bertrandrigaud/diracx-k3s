@@ -28,6 +28,12 @@ diracx-charts: https://github.com/DIRACGrid/diracx-charts
   
 - Clone this repo on your laptop
 
+- Ports
+    - 6443 (kubernetes)
+    - 8001 (kubernetes dashboard)
+    - 8080 (longhorn dashboard)
+    - 9000 (traefik dashboard)
+
 Install kubectl (on laptop)
 ---------------------------
 
@@ -125,7 +131,7 @@ kubectl -n kubernetes-dashboard create token admin-user
 
 ```
 # launch web server
-kubectl proxy
+kubectl proxy &
 ```
 
 In a web browser, go to : http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/  
@@ -173,7 +179,7 @@ sed -i -e "s/storageclass.kubernetes.io\/is-default-class: \"true\"/storageclass
 
 
 ```
-kubectl port-forward -n longhorn-system svc/longhorn-frontend 8080:80
+kubectl port-forward -n longhorn-system svc/longhorn-frontend 8080:80 &
 ```
 
 ## Deploy diracx
