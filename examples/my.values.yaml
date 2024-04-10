@@ -1,3 +1,6 @@
+global:
+  storageClassName: longhorn
+
 diracx:
   hostname: <your_hostname>
   service:

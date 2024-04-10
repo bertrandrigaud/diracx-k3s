@@ -185,8 +185,6 @@ curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/scripts/en
 
 ```
 
-Note: Check `storageClassName: longhorn` is set in `diracx-charts/diracx/templates/cs-store-volume.yml`
-
 On master Node:
 ```
 cp /var/lib/rancher/k3s/server/manifests/local-storage.yaml /var/lib/rancher/k3s/server/manifests/custom-local-storage.yaml 
