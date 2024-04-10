@@ -160,6 +160,21 @@ kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/depl
 
 kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/deploy/prerequisite/longhorn-nfs-installation.yaml
 
+```
+
+**Single or two nodes cluster** (less than 3 nodes)  
+```
+wget https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/deploy/longhorn.yaml
+```
+
+edit `longhorn.yaml` and modify `numberOfReplicas: <number of nodes>` (i.e 1 or 2)
+
+```
+kubectl apply -f longhorn.yaml
+```
+
+**Multi node cluster** (more than 2 nodes)
+```
 kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.3/deploy/longhorn.yaml
 ```
 
